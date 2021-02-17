@@ -3,6 +3,7 @@ sudo: required
 dist: trusty
 compiler:
     - clang
+    - gcc
 os:
     - linux
 
@@ -23,6 +24,7 @@ install:
 script:
     - cd g2opy && mkdir build && cd build 
     - cmake ..
+    - cat g2o/config.h
     - make 
     - cd .. 
     - python3 setup.py install
