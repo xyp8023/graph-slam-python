@@ -24,5 +24,6 @@ script:
     - cd g2opy && mkdir build && cd build 
     - cmake ..
     - make 
-    - cd .. && python3 setup.py install
+    - cd .. 
+    - python setup.py install
  
