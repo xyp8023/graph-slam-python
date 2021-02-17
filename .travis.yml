@@ -23,10 +23,9 @@ install:
     - git clone https://github.com/uoip/g2opy.git
 script:
     - cd g2opy && mkdir build && cd build 
-    # - which python
     - cmake -DPYTHON_EXECUTABLE=$(which python3) .. 
     - cat g2o/config.h
-    - make 
+    - make -w
     - cd .. 
     - python3 setup.py install
  
