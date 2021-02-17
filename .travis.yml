@@ -2,7 +2,7 @@ language: cpp
 sudo: required
 dist: xenial
 compiler:
-    - clang
+    - gcc
 os:
     - linux
 
@@ -16,14 +16,15 @@ notifications:
 before_install:
     - env | sort
     - sudo apt-get update -qq
-    - sudo apt-get install -qq cmake qtdeclarative5-dev qt5-qmake libqglviewer-dev libeigen3-dev libsuitesparse-dev
+    - sudo apt-get install -qq cmake qtdeclarative5-dev qt5-qmake libqglviewer-dev libeigen3-dev libsuitesparse-dev python3-setuptools
 
 install: 
     - git clone https://github.com/uoip/g2opy.git
 script:
     - cd g2opy && mkdir build && cd build 
-    - cmake ..
-    - make 
+    - cmake -DPYTHON_EXECUTABLE=$(which python3) .. 
+    - cat g2o/config.h
+    - make -w -j8
     - cd .. 
-    - python setup.py install
+    - sudo python3 setup.py install
  
