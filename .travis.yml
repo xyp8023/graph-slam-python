@@ -25,7 +25,7 @@ script:
     - cd g2opy && mkdir build && cd build 
     - cmake -DPYTHON_EXECUTABLE=$(which python3) .. 
     - cat g2o/config.h
-    - make -w
+    - make -w -j8
     - cd .. 
     - python3 setup.py install
  
