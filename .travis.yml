@@ -16,18 +16,17 @@ notifications:
 
 before_install:
     - env | sort
-    - which python
     - sudo apt-get update -qq
     - sudo apt-get install -qq cmake qtdeclarative5-dev qt5-qmake libqglviewer-dev libeigen3-dev libsuitesparse-dev
 
-# install: 
-    # - git clone https://github.com/uoip/g2opy.git
-# script:
-    # - cd g2opy && mkdir build && cd build 
+install: 
+    - git clone https://github.com/uoip/g2opy.git
+script:
+    - cd g2opy && mkdir build && cd build 
     # - which python
-    # - cmake -DPYTHON_EXECUTABLE=$(which python) .. 
-    # - cat g2o/config.h
-    # - make 
-    # - cd .. 
-    # - python3 setup.py install
+    - cmake -DPYTHON_EXECUTABLE=$(which python3) .. 
+    - cat g2o/config.h
+    - make 
+    - cd .. 
+    - python3 setup.py install
  
