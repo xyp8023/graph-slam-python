@@ -23,7 +23,7 @@ install:
     - git clone https://github.com/uoip/g2opy.git
 script:
     - cd g2opy && mkdir build && cd build 
-    - cmake ..
+    - cmake -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=$(python-config --prefix)/bin/python3.5 -DPYTHON_LIBRARY=$(python-config --prefix)/lib/libpython3.5m.so -DPYTHON_INCLUDE_DIR=$(python-config --prefix)/include/python3.5m .. 
     - cat g2o/config.h
     - make 
     - cd .. 
