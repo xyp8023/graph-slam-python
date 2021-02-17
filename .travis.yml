@@ -1,8 +1,7 @@
 language: cpp
 sudo: required
-dist: trusty
+dist: xenial
 compiler:
-    - clang
     - gcc
 os:
     - linux
@@ -17,7 +16,7 @@ notifications:
 before_install:
     - env | sort
     - sudo apt-get update -qq
-    - sudo apt-get install -qq cmake qtdeclarative5-dev qt5-qmake libqglviewer-dev libeigen3-dev libsuitesparse-dev
+    - sudo apt-get install -qq cmake qtdeclarative5-dev qt5-qmake libqglviewer-dev libeigen3-dev libsuitesparse-dev python3-setuptools
 
 install: 
     - git clone https://github.com/uoip/g2opy.git
