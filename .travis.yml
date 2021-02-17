@@ -25,5 +25,5 @@ script:
     - cmake ..
     - make 
     - cd .. 
-    - python setup.py install
+    - python3 setup.py install
  
