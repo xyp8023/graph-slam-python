@@ -25,7 +25,4 @@ script:
     - cmake ..
     - make 
     - cd .. && python3 setup.py install
-
-branches:
-    - only:
-          - master 
+ 
