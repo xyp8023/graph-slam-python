@@ -26,5 +26,5 @@ script:
     - cat g2o/config.h
     - make -w -j8
     - cd .. 
-    - python3 setup.py install
+    - sudo python3 setup.py install
  
