@@ -7,7 +7,7 @@ import unittest
 import numpy as np
 import time
 import utils.icp as icp 
-from config import Config
+from icp_config import Config
 
 
 

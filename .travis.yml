@@ -27,4 +27,8 @@ script:
     - make -w -j8
     - cd .. 
     - sudo python3 setup.py install
+    - cd ..
+    - python3 setup.py install
+    - cd tests
+    - python -m unittest tests/test_icp.py
  
