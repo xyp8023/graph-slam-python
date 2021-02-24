@@ -17,6 +17,7 @@ before_install:
     - env | sort
     - sudo apt-get update -qq
     - sudo apt-get install -qq cmake qtdeclarative5-dev qt5-qmake libqglviewer-dev libeigen3-dev libsuitesparse-dev python3-setuptools
+    - pip3 install -U numpy scikit-learn
 
 install: 
     - git clone https://github.com/uoip/g2opy.git
@@ -25,10 +26,7 @@ script:
     - cmake -DPYTHON_EXECUTABLE=$(which python3) .. 
     - cat g2o/config.h
     - make -w -j8
-    - cd .. 
-    - sudo python3 setup.py install
-    - cd ..
-    - sudo python3 setup.py install
-    - cd tests
-    - python3 -m unittest test_icp.py
+    - cd .. && sudo python3 setup.py install
+    - cd .. && sudo python3 setup.py install
+    - cd tests && python3 -m unittest test_icp.py
  
