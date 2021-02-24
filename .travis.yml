@@ -30,5 +30,5 @@ script:
     - make -w -j8
     - cd .. && sudo python3 setup.py install
     - cd .. && sudo python3 setup.py install
-    - cd tests && python3 -m unittest test_icp.py
+    - python3 -m unittest tests.test_icp.py
  
