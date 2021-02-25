@@ -8,8 +8,8 @@ import numpy as np
 from pathlib import Path
 
 def read_data(name):
-    dir_path = os.getcwd()
-    root_path = str(Path(dir_path).parent)
+    root_path = os.getcwd()
+    
     
     clf_file = root_path + os.sep + "datasets" + os.sep + name + ".clf"
     print(clf_file)
