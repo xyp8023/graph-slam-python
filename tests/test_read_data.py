@@ -11,7 +11,7 @@ import utils.read_data as read_data
 
 
 
-class TestICP(unittest.TestCase):
+class TestReadData(unittest.TestCase):
     def test_read_data(self):
         name = "aces"
         read_data.read_data(name=name)
