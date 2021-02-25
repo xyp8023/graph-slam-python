@@ -31,4 +31,6 @@ script:
     - cd .. && sudo python3 setup.py install
     - cd .. && sudo python3 setup.py install
     - python3 -m unittest tests.test_icp
+    - python3 -m unittest tests.test_read_data
+
  
