@@ -1,9 +1,30 @@
 """
-ref: https://github.com/ClayFlannigan/icp/blob/master/icp.py
+Original code: https://github.com/ClayFlannigan/icp/blob/master/icp.py
+Modified to reject pairs that have greater distance than the specified threshold
+Add covariance check
 """
-
 import numpy as np
 from sklearn.neighbors import NearestNeighbors
+
+
+def calc_info_mat_2d(A, B, distances):
+    '''
+    maps A to B in m dimensions
+    A: Nxm 
+    B: Nxm
+    '''
+    
+    s_2 = np.mean(distances)
+        
+    H = np.zeros((3,3))
+    for num in range(B.shape[0]):
+        print(num, B.shape, B[num,:])
+        xi, yi = B[num,:]
+        M = np.array([[1, 0, -yi],[0, 1, xi]])
+        H = H + np.matmul(M.T, M)/2
+    H = H/B.shape[0]
+    return s_2 * H
+    
 
 
 def best_fit_transform(A, B):
@@ -105,8 +126,17 @@ def icp(A, B, init_pose=None, max_iterations=20, tolerance=0.001):
         # find the nearest neighbors between the current source and destination points
         distances, indices = nearest_neighbor(src[:m,:].T, dst[:m,:].T)
 
-        # compute the transformation between the current source and nearest destination points
-        T,_,_ = best_fit_transform(src[:m,:].T, dst[:m,indices].T)
+        # Reject pairs that have 1 meter distance between them
+        indices = indices[np.linalg.norm(src[:m, :], axis=0) < 80]
+        distances = distances[np.linalg.norm(src[:m, :], axis=0) < 80]
+        filtered_src = src[:, np.linalg.norm(src[:m, :], axis=0) < 80]
+        indices = indices[distances < 1.0]
+
+        # compute the transformation between
+        # the current source and nearest destination points
+        T,_,_ = best_fit_transform(filtered_src[:m, distances < 1.0].T, dst[:m,indices].T)
+
+        # distances = distances[distances <= 1.0]
 
         # update the current source
         src = np.dot(T, src)
@@ -120,4 +150,12 @@ def icp(A, B, init_pose=None, max_iterations=20, tolerance=0.001):
     # calculate final transformation
     T,_,_ = best_fit_transform(A, src[:m,:].T)
 
-    return T, distances, i
+
+
+    theta = np.arctan2(T[1,0], T[0,0])
+    if (theta < 10*np.pi/180) and A.shape[1]==2:
+        info = calc_info_mat_2d(A, B, distances)
+    else:
+        info = np.eye(3)
+
+    return T, distances, i, info

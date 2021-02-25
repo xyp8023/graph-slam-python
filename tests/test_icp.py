@@ -107,7 +107,7 @@ class TestICP(unittest.TestCase):
 
             # Run ICP
             start = time.time()
-            T, distances, iterations = icp.icp(B, A, tolerance=0.000001)
+            T, distances, iterations, info = icp.icp(B, A, tolerance=0.000001)
             total_time += time.time() - start
 
             # Make C a homogeneous representation of B
