@@ -32,6 +32,8 @@ script:
     - cd .. && sudo python3 setup.py install
     - python3 -m unittest tests.test_icp
     - python3 -m unittest tests.test_read_data
+    - ABSDIR=`readlink -e ./g2opy`
+    - export PYTHONPATH=$PYTHONPATH:$ABSDIR
     - python3 graph_slam.py intel 0.1
 
  
