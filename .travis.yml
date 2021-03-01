@@ -19,7 +19,7 @@ before_install:
     - sudo apt-get install -qq cmake qtdeclarative5-dev qt5-qmake libqglviewer-dev libeigen3-dev libsuitesparse-dev python3-setuptools
     - which python3
     - pyenv global 3.6.7
-    - pip3 install -U numpy scikit-learn
+    - pip3 install -U numpy scikit-learn scipy
 
 install: 
     - git clone https://github.com/uoip/g2opy.git
@@ -32,5 +32,6 @@ script:
     - cd .. && sudo python3 setup.py install
     - python3 -m unittest tests.test_icp
     - python3 -m unittest tests.test_read_data
+    - python3 graph_slam.py intel 0.1
 
  
