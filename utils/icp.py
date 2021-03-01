@@ -18,7 +18,7 @@ def calc_info_mat_2d(A, B, distances):
         
     H = np.zeros((3,3))
     for num in range(B.shape[0]):
-        print(num, B.shape, B[num,:])
+        # print(num, B.shape, B[num,:])
         xi, yi = B[num,:]
         M = np.array([[1, 0, -yi],[0, 1, xi]])
         H = H + np.matmul(M.T, M)/2

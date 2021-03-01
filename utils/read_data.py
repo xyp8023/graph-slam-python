@@ -12,7 +12,7 @@ def read_data(name):
     
     
     clf_file = root_path + os.sep + "datasets" + os.sep + name + ".clf"
-    print(clf_file)
+    # print(clf_file)
     # check if the dataset is existed
     assert os.path.exists(clf_file)
 
