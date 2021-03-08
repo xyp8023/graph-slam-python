@@ -1,5 +1,5 @@
 # graph-slam-python
-A simple 2D graph-slam system in python 3. For Intel dataset, first 2000 datapoints would look like this:
+A simple 2D graph-slam system based on ICP in python 3. For Intel dataset, first 2000 datapoints would look like this:
 
 ![Intel](./images/map_and_pose277_name_intel.png)
 
