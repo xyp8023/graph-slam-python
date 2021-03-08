@@ -21,7 +21,6 @@ before_install:
     - sudo apt-get update && sudo apt-get install python3.6 python3-setuptools python3.6-dev
     - sudo wget https://bootstrap.pypa.io/get-pip.py
     - PY_CMD=/usr/bin/python3.6
-    - ls /usr/bin/python*
     - sudo $PY_CMD get-pip.py
     - $PY_CMD -m pip install -U numpy scikit-learn scipy matplotlib setuptools
 
