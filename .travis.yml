@@ -19,21 +19,21 @@ before_install:
     - sudo apt-get install -qq cmake qtdeclarative5-dev qt5-qmake libqglviewer-dev libeigen3-dev libsuitesparse-dev python3-setuptools
     - which python3
     - pyenv global 3.6.7
-    - pip3 install -U numpy scikit-learn scipy matplotlib setuptools
+    - PY_CMD=/usr/lib/python3
+    - $PY_CMD -m pip install -U numpy scikit-learn scipy matplotlib setuptools
 
 install: 
     - git clone https://github.com/uoip/g2opy.git
 script:
     - cd g2opy && mkdir build && cd build 
-    - cmake -DPYTHON_EXECUTABLE=$(which python3) .. 
-    - cat g2o/config.h
+    - cmake -DPYTHON_EXECUTABLE=$PY_CMD .. 
     - make -w -j8
-    - cd .. && sudo python3 setup.py install
-    - cd .. && sudo python3 setup.py install
-    - python3 -m unittest tests.test_icp
-    - python3 -m unittest tests.test_read_data
+    - cd .. && sudo $PY_CMD setup.py install
+    - cd .. && sudo $PY_CMD setup.py install
+    - $PY_CMD -m unittest tests.test_icp
+    - $PY_CMD -m unittest tests.test_read_data
     - ABSDIR=`readlink -e ./g2opy`
     - export PYTHONPATH=$PYTHONPATH:$ABSDIR
-    - python3 graph_slam.py intel 0.1
+    - $PY_CMD graph_slam.py intel 0.1
 
  
