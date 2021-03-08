@@ -17,6 +17,8 @@ before_install:
     - env | sort
     - sudo apt-get update -qq
     - sudo apt-get install -qq cmake qtdeclarative5-dev qt5-qmake libqglviewer-dev libeigen3-dev libsuitesparse-dev python3-setuptools
+    - sudo add-apt-repository ppa:jonathonf/python-3.6
+    - sudo apt-get update && sudo apt-get install python3.6
     - sudo wget https://bootstrap.pypa.io/get-pip.py
     - PY_CMD=/usr/bin/python3.6
     - ls /usr/bin/python*
