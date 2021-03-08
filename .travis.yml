@@ -17,8 +17,8 @@ before_install:
     - env | sort
     - sudo apt-get update -qq
     - sudo apt-get install -qq cmake qtdeclarative5-dev qt5-qmake libqglviewer-dev libeigen3-dev libsuitesparse-dev python3-setuptools
-    - which python3
-    - pyenv global 3.6.7
+    - sudo wget https://bootstrap.pypa.io/get-pip.py
+    - sudo python3 get-pip.py
     - PY_CMD=/usr/bin/python3
     - $PY_CMD -m pip install -U numpy scikit-learn scipy matplotlib setuptools
 
