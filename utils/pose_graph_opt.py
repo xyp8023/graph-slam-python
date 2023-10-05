@@ -1,10 +1,11 @@
 import numpy as np
 import g2o
 
+
 class PoseGraphOptimization(g2o.SparseOptimizer):
     def __init__(self):
         super().__init__()
-        solver = g2o.BlockSolverSE2(g2o.LinearSolverCholmodSE2())
+        solver = g2o.BlockSolverSE2(g2o.LinearSolverDenseSE2())
         solver = g2o.OptimizationAlgorithmLevenberg(solver)
         super().set_algorithm(solver)
 
@@ -19,18 +20,17 @@ class PoseGraphOptimization(g2o.SparseOptimizer):
         v_se2.set_fixed(fixed)
         super().add_vertex(v_se2)
 
-    def add_edge(self, vertices, measurement, 
-            information=np.identity(3),
-            robust_kernel=None):
-
+    def add_edge(
+        self, vertices, measurement, information=np.identity(3), robust_kernel=None
+    ):
         edge = g2o.EdgeSE2()
         for i, v in enumerate(vertices):
             if isinstance(v, int):
                 v = self.vertex(v)
             edge.set_vertex(i, v)
-        
+
         # relative pose
-        edge.set_measurement(measurement)  
+        edge.set_measurement(measurement)
         edge.set_information(information)
         if robust_kernel is not None:
             edge.set_robust_kernel(robust_kernel)

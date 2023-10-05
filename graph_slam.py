@@ -18,7 +18,7 @@ if __name__ == "__main__":
     plt.gcf().canvas.mpl_connect('key_release_event',
             lambda event: [exit() if event.key == 'escape' else None])
     plt.gcf().gca().set_aspect('equal')
-    plt.gcf().canvas.set_window_title('float')
+    plt.gcf().canvas.manager.set_window_title('Graph SLAM')
     plt.gcf().tight_layout(pad=0)
 
     max_x = -float('inf')
